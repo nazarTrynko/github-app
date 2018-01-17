@@ -12,7 +12,10 @@ export default class ReposView extends Component {
     accessor: 'description',
   }, {
     Header: 'Url',
-    accessor: 'url'
+    accessor: 'html_url',
+    Cell: row => (
+      <a href={row.value} target="_blank">{row.value}</a>
+    )
   }, {
     Header: '# of forks',
     accessor: 'forks_count'
