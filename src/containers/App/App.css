@@ -22,6 +22,20 @@
   font-size: large;
 }
 
+.button {
+	border:1px solid #acb1b7;
+  background-color:#3b465a;
+  color: #ffffff;
+  text-decoration: transparent;
+  width: 100px;
+  height: 100px;
+}
+
+.button:hover {
+  background-color:#403b5a;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
