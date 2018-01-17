@@ -1,9 +1,11 @@
 import axios from 'axios'
 
+import config from '../constants/config'
+
 const createApi = (options) =>
   axios.create({ ...options })
 
-const githubClient = createApi({ baseURL: 'https://api.github.com' })
+const githubClient = createApi({ baseURL: config.githubApiUrl })
 
 // extracts data object from response
 const returnData = ({ data }) => data

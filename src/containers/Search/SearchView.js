@@ -5,6 +5,7 @@ import _ from 'lodash'
 
 import './SearchView.css'
 
+import constants from '../../constants/main'
 import { getUser } from '../../utils/api'
 import UserTable from '../../components/UserTable'
 import UserSearch from '../../components/UserSearch'
@@ -32,18 +33,14 @@ export default class SearchView extends Component {
             onSubmit={this.handleSubmit}
           />
         </Row>
-
-        <Row>
-          {
+        {
+          !_.isEmpty(user) &&
+          <Row>
             <UserTable
-              sortable={false}
-              showPagination={false}
-              showPageSizeOptions={false}
               user={user}
-              defaultPageSize={10}
             />
-          }
-        </Row>
+          </Row>
+        }
 
         {
           !_.isEmpty(user) &&
@@ -71,24 +68,30 @@ export default class SearchView extends Component {
 
       this.setState({
         user: {
-          'Name': name,
-          'Company': company,
-          'Email': email,
-          'Followers': followers,
-          'Updated at': updated_at,
-          'Avatar url': avatar_url,
+          [constants.NAME]: name,
+          [constants.COMPANY]: company,
+          [constants.EMAIL]: email,
+          [constants.FOLLOWERS]: followers,
+          [constants.UPDATED_AT]: updated_at,
+          [constants.AVATAR_URL]: avatar_url,
         },
         userName: this.state.value
       })
     } catch (error) {
-      this.showError(error, 'No such user')
+      this.showError(error, { 404: 'No such user', default: 'Please check your connection' })
     }
   }
 
+  /**
+   * go to repos view and pass username
+   */
   showRepos = () => this.props.showRepos(this.state.userName)
 
   showError = (error, message) => {
-    this.setState({ error: message }, () => {
+    const { status } = error.response
+    const errorMessage = message.hasOwnProperty(status) ? message[status] : message.default
+
+    this.setState({ error: errorMessage }, () => {
       setTimeout(() => {
         this.setState({ error: null })
       }, 1500)

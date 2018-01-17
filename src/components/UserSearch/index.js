@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 
 import './styles.css'
 
-export default function UserSearch({ value, error, disabled, onChange, onSubmit }) {
+const UserSearch = ({ value, error, disabled, onChange, onSubmit }) => {
   return (
     <div>
       <p className="search-label">Search github's user by username</p>
@@ -26,3 +26,5 @@ export default function UserSearch({ value, error, disabled, onChange, onSubmit 
     </div>
   )
 }
+
+export default UserSearch

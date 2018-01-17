@@ -2,11 +2,11 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import ReposView from './ReposView'
-import { getRepos } from '../../store/reducers/api'
+import { getRepos } from '../../store/reducers/repos'
 
 const mapStateToProps = (state) => ({
-  repos: state.api.repos,
-  reposLoading: state.api.reposLoading
+  repos: state.repos.repos,
+  reposLoading: state.repos.reposLoading
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
