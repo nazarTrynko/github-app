@@ -1,0 +1,24 @@
+.center-text {
+  text-align: center
+}
+
+.search-input.form-control {
+  width: 35%;
+  display: inline-block;
+  border-radius: 0;
+  height: 40px;
+}
+
+.center-self {
+  float: none;
+  margin: 0 auto;
+}
+
+.error-message {
+  font-size: 23px;
+  color: #f31d1d;
+}
+
+Button.show-repos-button {
+  width: auto
+}

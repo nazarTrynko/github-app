@@ -1,12 +1,19 @@
-import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default class Repos extends Component {
-  
-  render() {
-    return (
-      <div>
-          This is repo #{this.props.match.params.userId}
-      </div>
-    )
-  }
-}
+import ReposView from './ReposView'
+import { getRepos } from '../../store/reducers/api'
+
+const mapStateToProps = (state) => ({
+  repos: state.api.repos,
+  reposLoading: state.api.reposLoading
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getRepos
+}, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReposView)

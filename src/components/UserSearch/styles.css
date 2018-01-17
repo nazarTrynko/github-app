@@ -1,0 +1,9 @@
+Button.search-button {
+  height: 40px;
+  border-radius: 0; 
+}
+
+.search-label {
+  font-size: 20px;
+  padding: 20px;
+}

@@ -1,19 +1,17 @@
 import axios from 'axios'
 
+const createApi = (options) =>
+  axios.create({ ...options })
+
 const githubClient = createApi({ baseURL: 'https://api.github.com' })
 
-export function getUser(userName) {
-  return githubClient.get(`/users/${userName}`).then((returnData))
-}
-
-export function getReposByUsername(userName) {
-  return githubClient.get(`/users/${userName}/repos`).then(returnData)
-}
-
+// extracts data object from response
 const returnData = ({ data }) => data
 
-function createApi(options) {
-  return axios.create({
-    ...options
-  })
+export const getUser = (userName) => {
+  return githubClient.get(`/users/${userName}`).then(returnData)
+}
+
+export const getReposByUserName = (userName) => {
+  return githubClient.get(`/users/${userName}/repos?type=all`).then(returnData)
 }

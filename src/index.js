@@ -1,18 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'react-router-redux'
+import { Switch, Route } from 'react-router-dom'
 
 import './index.css'
-import App from './containers/App'
+
+import store, { history } from './store'
 import registerServiceWorker from './registerServiceWorker'
-import Search from './containers/Search'
-import Repos from './containers/Repos'
+import AppViewContainer from './containers/App/'
 
 ReactDOM.render((
-    <BrowserRouter>
-        <Switch>
-            <Route path="/" component={App} />
-        </Switch>
-    </BrowserRouter>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={AppViewContainer} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>
+
 ), document.getElementById('root'))
 registerServiceWorker()
